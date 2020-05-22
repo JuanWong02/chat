@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+
+<body>
+    <div id="app">
+    <h1>Chat</h1>
+
+    <!-- Contenedor de mensajes -->
+    <ul id="message_container">
+        <li v-for="m in messages">
+            {{m}}
+        </li>
+
+    </ul>
+
+    <!-- Formulario para enviar mensajes -->
+    <form id="form_message" action="">
+        <input id="input_message" type="text" v-model="message">
+        <button type ="button" id="button_send_message" @click="sendMessage">Send</button>
+    </form>
+</div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="/javascripts/index.js"></script>
+   <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
+
+    <!-- Funcionalidad del cliente -->
+    <!-- <script>
+        // Después de que cargue la página
+        $(function () {
+            var socket = io();
+
+            //Configurar el evento de submit del formulario
+            //Buscar formulario por id
+            $('#form_message').submit(function (e) {
+              //e = event
+              //prevenir funcionalidad default del submit del formulario
+              //que no se envie el formulario
+              e.preventDefault();
+              //extraer mensaje a enviar desde el input
+              var message = $('#input_message').val();
+              //enviar mensaje al servidor
+              socket.emit('message.new',message);
+              //borrar contenido del input
+              $('#input_message').val('');
+
+              return false;
+            });
+            //al recibir un nuevo mensaje evento llamado message.received
+            socket.on('message.received', function(message) {
+              //construir un elemento li cuyo contenido sera el mensaje
+              var element = $('<li>').text(message);
+
+              //agregar el elemento li al html en el message_container
+              $('#message_container').append(element)
+            });
+        });
+    </script> -->
+
+</body>
+
+</html>
